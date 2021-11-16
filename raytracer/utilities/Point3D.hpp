@@ -7,6 +7,7 @@
 */
 
 #include <string>
+#include <math.h>
 
 class Vector3D;
 
@@ -18,7 +19,7 @@ public:
   // Constructors.
   Point3D();                          // set point to (0, 0, 0).
   Point3D(float c);                   // set point to (c, c, c).
-  Point3D(float x, float y, float z); // set point to (x,y,z).
+  Point3D(float _x, float _y, float _z); // set point to (x,y,z).
 
   // Destructor.
   ~Point3D() = default;

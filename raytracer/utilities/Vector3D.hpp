@@ -7,6 +7,7 @@
 */
 
 #include <string>
+#include <math.h>
 
 class Point3D;
 
