@@ -1,4 +1,6 @@
 #include "Parallel.hpp"
+#include "../utilities/Point3D.hpp"
+#include "../utilities/Vector3D.hpp"
 
 Parallel::Parallel()
 {

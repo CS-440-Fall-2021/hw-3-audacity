@@ -1,4 +1,5 @@
 #include "Vector3D.hpp"
+#include "Point3D.hpp"
 
 Vector3D::Vector3D()
 {

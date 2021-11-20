@@ -19,7 +19,7 @@ private:
   
 public:
   // Constructors.
-  Image(int hres, int vres);  // initialize blank image of given size.
+  Image(int _hres, int _vres);  // initialize blank image of given size.
   Image(const ViewPlane &vp); // initialize blank image with size of vp.
 
   // Destructor.

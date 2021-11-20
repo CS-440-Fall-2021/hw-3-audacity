@@ -1,4 +1,6 @@
 #include "Perspective.hpp"
+#include "../utilities/Point3D.hpp"
+#include "../utilities/Vector3D.hpp"
 
 Perspective::Perspective()
 {
