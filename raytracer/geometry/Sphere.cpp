@@ -25,7 +25,15 @@ Sphere &Sphere::operator=(const Sphere &rhs)
 {
   c = Point3D(rhs.c);
   r = rhs.r;
+
+  return *this;
 }
+
+std::string Sphere::to_string() const
+{
+
+}
+
 
 bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
@@ -71,4 +79,9 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
 
   s.hit = false;
   return false;
+}
+
+BBox Sphere::getBBox() const
+{
+
 }

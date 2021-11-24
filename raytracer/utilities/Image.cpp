@@ -1,6 +1,6 @@
 #include "Image.hpp"
 #include "RGBColor.hpp"
-#include "ViewPlane.hpp"
+#include "../world/ViewPlane.hpp"
 
 Image::Image(int _hres, int _vres)
 {

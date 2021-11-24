@@ -1,4 +1,7 @@
 #include "Triangle.hpp"
+#include "../utilities/BBox.hpp"
+#include "../utilities/Ray.hpp"
+#include "../utilities/ShadeInfo.hpp"
 
 Triangle::Triangle() : Geometry()
 {
@@ -32,4 +35,22 @@ Triangle &Triangle::operator=(const Triangle &rhs)
   v0 = Point3D(rhs.v0);
   v1 = Point3D(rhs.v1);
   v2 = Point3D(rhs.v2);
+
+  return *this;
+}
+
+std::string Triangle::to_string() const
+{
+
+}
+
+
+bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
+{
+
+}
+
+BBox Triangle::getBBox() const
+{
+
 }

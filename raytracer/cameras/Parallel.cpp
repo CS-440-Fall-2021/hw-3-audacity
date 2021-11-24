@@ -41,5 +41,5 @@ Parallel &Parallel::operator=(const Parallel &other)
 
 Vector3D Parallel::get_direction(const Point3D &p) const
 {
-    // Not sure
+    return dir;
 }

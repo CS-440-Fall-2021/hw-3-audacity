@@ -33,6 +33,11 @@ Plane &Plane::operator=(const Plane &rhs)
     return *this;
 }
 
+std::string Plane::to_string() const
+{
+
+}
+
 // Taken from: https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
 
 // bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
