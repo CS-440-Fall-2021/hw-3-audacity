@@ -22,7 +22,13 @@ std::vector<Ray> Simple::get_rays(int px, int py) const
 {
     std::vector<Ray> rays;
 
-    Point3D pixel = viewplane_ptr->top_left + Vector3D(px, py, 0);
+    int scaled_px, scaled_py;
+
+    scaled_px = ( px / viewplane_ptr->get_hres() ) * (viewplane_ptr->bottom_right.x - viewplane_ptr->top_left.x);
+
+    scaled_py = ( py / viewplane_ptr->get_vres() ) * (viewplane_ptr->bottom_right.y - viewplane_ptr->top_left.y);
+
+    Point3D pixel = viewplane_ptr->top_left + Vector3D(scaled_px, scaled_py, 0);
 
     rays.push_back( Ray(pixel, camera_ptr->get_direction(pixel)) );
 

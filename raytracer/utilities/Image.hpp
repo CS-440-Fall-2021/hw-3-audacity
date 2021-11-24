@@ -6,7 +6,9 @@
 
    x increases to the right, and y to the bottom.
 */
-
+#include <iostream>
+#include <stdio.h>
+#include <fstream>
 #include <string>
 
 class RGBColor;

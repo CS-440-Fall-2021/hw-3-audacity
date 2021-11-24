@@ -47,5 +47,27 @@ void Image::set_pixel(int x, int y, const RGBColor& color)
 
 void Image::write_ppm(std::string path) const
 {
-    // Will do later
+    remove(&path[0]);
+
+    std::ofstream fp;
+    fp.open(path);
+
+    fp << "P3\n";
+    fp << hres << " " << vres << std::endl;
+    fp << "255\n";
+
+    for(int i = 0; i < hres; i++)
+    {
+        for(int j = 0; j < vres; j++)
+        {
+            fp << colors[i][j].to_string();
+
+            if (j != (vres - 1))
+                fp << " ";
+        }
+
+        fp << "\n";
+    }
+
+    fp.close();
 }
