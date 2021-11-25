@@ -4,7 +4,7 @@
 #include "../utilities/Ray.hpp"
 #include "../samplers/Sampler.hpp"
 #include "../utilities/ShadeInfo.hpp"
-
+#include <iostream>
 
 World::World() {};
 
@@ -36,7 +36,7 @@ ShadeInfo World::hit_objects(const Ray &ray)
     {
         if (geometry[i]->hit(ray, t, current) == true)
         {
-            if ( ( closest.hit == false ) || ( current.hit_point.distance(ray.o) < closest.hit_point.distance(ray.o) ) )
+            if ( ( closest.hit == false ) || ( current.t < closest.t ) )
             {
                 closest = ShadeInfo(current);
                 current = ShadeInfo(*this);

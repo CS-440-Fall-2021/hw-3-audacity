@@ -19,9 +19,9 @@ RGBColor::RGBColor(float _r, float _g, float _b)
 
 std::string RGBColor::to_string() const
 {
-    std::string r_s = std::to_string(r);
-    std::string g_s = std::to_string(g);
-    std::string b_s = std::to_string(b);
+    std::string r_s = std::to_string((int)round(r * 255));
+    std::string g_s = std::to_string((int)round(g * 255));
+    std::string b_s = std::to_string((int)round(b * 255));
 
     return r_s + " " + g_s + " " + b_s;
 }
