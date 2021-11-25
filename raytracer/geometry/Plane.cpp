@@ -79,6 +79,7 @@ bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
         s.material_ptr = material_ptr;
         s.t = t;
         s.hit_point = ray.o + t * ray.d;
+        s.ray = Ray(ray);
 
         return true;
     }

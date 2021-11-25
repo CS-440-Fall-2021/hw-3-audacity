@@ -95,6 +95,7 @@ bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
   s.hit = true;
   s.material_ptr = material_ptr;
   s.t = t;
+  s.ray = Ray(ray);
 
   return true;
 }

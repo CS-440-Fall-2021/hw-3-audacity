@@ -60,6 +60,7 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
       s.hit = true;
       s.t = t;
       s.material_ptr = material_ptr;
+      s.ray = Ray(ray);
       return true;
     }
 
@@ -73,6 +74,7 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
       s.hit = true;
       s.t = t;
       s.material_ptr = material_ptr;
+      s.ray = Ray(ray);
       return true;
     }
   }
