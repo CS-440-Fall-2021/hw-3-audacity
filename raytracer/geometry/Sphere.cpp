@@ -56,6 +56,7 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
     {
       t = _t;
       s.normal = (temp + t * ray.d) / r;
+      s.normal.normalize();
       s.hit_point = ray.o + t * ray.d;
       s.hit = true;
       s.t = t;
@@ -70,6 +71,7 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
     {
       t = _t;
       s.normal = (temp + t * ray.d) / r;
+      s.normal.normalize();
       s.hit_point = ray.o + t * ray.d;
       s.hit = true;
       s.t = t;

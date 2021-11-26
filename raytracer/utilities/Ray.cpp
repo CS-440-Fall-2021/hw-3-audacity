@@ -11,6 +11,9 @@ Ray::Ray(const Point3D &origin, const Vector3D &dir)
 {
     o = Point3D(origin);
     d = Vector3D(dir);
+
+    d.normalize();
+    
     w = 1;
 }
 

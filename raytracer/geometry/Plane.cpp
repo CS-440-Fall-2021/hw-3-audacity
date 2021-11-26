@@ -69,7 +69,7 @@ std::string Plane::to_string() const
 
 bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
-    float _t = (a - ray.o) * n / (ray.d * n);
+    float _t = ((a - ray.o) * n) / (ray.d * n);
 
     if (_t > kEpsilon)
     {
@@ -78,7 +78,7 @@ bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
         s.normal = n;
         s.material_ptr = material_ptr;
         s.t = t;
-        s.hit_point = ray.o + t * ray.d;
+        s.hit_point = ray.o + (t * ray.d);
         s.ray = Ray(ray);
 
         return true;
