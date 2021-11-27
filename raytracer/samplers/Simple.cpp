@@ -3,7 +3,6 @@
 #include "../utilities/Ray.hpp"
 #include "../world/ViewPlane.hpp"
 
-
 Simple::Simple(Camera *c_ptr, ViewPlane *v_ptr)
     : Sampler(c_ptr, v_ptr) {};
 
@@ -22,11 +21,11 @@ std::vector<Ray> Simple::get_rays(int px, int py) const
 {
     std::vector<Ray> rays;
 
-    int scaled_px, scaled_py;
+    double scaled_px, scaled_py;
 
-    scaled_px = ( px / viewplane_ptr->get_hres() ) * (viewplane_ptr->bottom_right.x - viewplane_ptr->top_left.x);
+    scaled_px = ( (double)px / (double)viewplane_ptr->get_hres() ) * (viewplane_ptr->bottom_right.x - viewplane_ptr->top_left.x);
 
-    scaled_py = ( py / viewplane_ptr->get_vres() ) * (viewplane_ptr->bottom_right.y - viewplane_ptr->top_left.y);
+    scaled_py = ( (double)py / (double)viewplane_ptr->get_vres() ) * (viewplane_ptr->bottom_right.y - viewplane_ptr->top_left.y);
 
     Point3D pixel = viewplane_ptr->top_left + Vector3D(scaled_px, scaled_py, 0);
 

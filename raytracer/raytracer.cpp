@@ -32,6 +32,7 @@ int main(int argc, char **argv) {
         ShadeInfo sinfo = world.hit_objects(ray);
         if (sinfo.hit) {
           pixel_color += weight * sinfo.material_ptr->shade(sinfo);
+          // std::cout << pixel_color.to_string() << std::endl;
         }
 	else {
           pixel_color += weight * world.bg_color;
