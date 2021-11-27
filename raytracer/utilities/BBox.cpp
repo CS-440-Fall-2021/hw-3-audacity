@@ -16,56 +16,43 @@ std::string BBox::to_string() const
 
 bool BBox::hit(const Ray &ray, float &t_enter, float &t_exit) const
 {
-    double ox = ray.o.x;
-    double oy = ray.o.y;
-    double oz = ray.o.z;
-    double dx = ray.d.x;
-    double dy = ray.d.y;
-    double dz = ray.d.z;
-    double x0 = pmin.x;
-    double x1 = pmax.x;
-    double y0 = pmin.y;
-    double y1 = pmax.y;
-    double z0 = pmin.z;
-    double z1 = pmax.z;
-
     double tx_min, ty_min, tz_min;
     double tx_max, ty_max, tz_max;
 
-    double a = 1.0 / dx;
+    double a = 1.0 / ray.d.x;
     if (a >= 0)
     {
-        tx_min = (x0 - ox) * a;
-        tx_max = (x1 - ox) * a;
+        tx_min = (pmin.x - ray.o.x) * a;
+        tx_max = (pmax.x - ray.o.x) * a;
     }
     else
     {
-        tx_min = (x1 - ox) * a;
-        tx_max = (x0 - ox) * a;
+        tx_min = (pmax.x - ray.o.x) * a;
+        tx_max = (pmin.x - ray.o.x) * a;
     }
 
-    double b = 1.0 / dy;
+    double b = 1.0 / ray.d.y;
     if (b >= 0)
     {
-        ty_min = (y0 - oy) * b;
-        ty_max = (y1 - oy) * b;
+        ty_min = (pmin.y - ray.o.y) * b;
+        ty_max = (pmax.y - ray.o.y) * b;
     }
     else
     {
-        ty_min = (y1 - oy) * b;
-        ty_max = (y0 - oy) * b;
+        ty_min = (pmax.y - ray.o.y) * b;
+        ty_max = (pmin.y - ray.o.y) * b;
     }
 
-    double c = 1.0 / dz;
+    double c = 1.0 / ray.d.z;
     if (c >= 0)
     {
-        tz_min = (z0 - oz) * c;
-        tz_max = (z1 - oz) * c;
+        tz_min = (pmin.z - ray.o.z) * c;
+        tz_max = (pmax.z - ray.o.z) * c;
     }
     else
     {
-        tz_min = (z1 - oz) * c;
-        tz_max = (z0 - oz) * c;
+        tz_min = (pmax.z - ray.o.z) * c;
+        tz_max = (pmin.z - ray.o.z) * c;
     }
 
     double t0, t1;
@@ -98,27 +85,4 @@ bool BBox::hit(const Ray &ray, float &t_enter, float &t_exit) const
     }
 
     return false;
-}
-
-// Extend this bbox, if necessary, to include g or b.
-void BBox::extend(Geometry *g)
-{
-}
-
-void BBox::extend(const BBox &b)
-{
-}
-
-// Does this BBox contain p? True even when p lies on a boundary.
-bool BBox::contains(const Point3D &p)
-{
-}
-
-// Does this BBox overlap with g or b?
-bool BBox::overlaps(Geometry *g)
-{
-}
-
-bool BBox::overlaps(const BBox &b)
-{
 }

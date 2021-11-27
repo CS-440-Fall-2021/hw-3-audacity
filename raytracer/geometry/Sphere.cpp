@@ -31,20 +31,22 @@ Sphere &Sphere::operator=(const Sphere &rhs)
 
 std::string Sphere::to_string() const
 {
-
 }
 
+// Reference: Ray Tracing from the Ground Up - Kevin Suffern
 
 bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
+  // equation to solve for t: (d . d)t^2 + [2(o - c) . d]t + (o - c). (o - c) - r^2 = 0
+
   double _t;
   Vector3D temp = ray.o - c;
-  double a = ray.d * ray.d;
-  double b = 2.0 * temp * ray.d;
-  double c = temp * temp - r * r;
-  double disc = b * b - 4.0 * a * c;
+  double a = ray.d * ray.d;          // a of the quadratic equation
+  double b = 2.0 * temp * ray.d;     // b of the quadratic equation
+  double c = temp * temp - r * r;    // c of the quadratic equation
+  double disc = b * b - 4.0 * a * c; // discriminant of the equation
 
-  if (disc < 0.0)
+  if (disc < 0.0) // if discriminant < 0, no hit, return false
     return (false);
   else
   {
@@ -52,8 +54,9 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
     double denom = 2.0 * a;
     _t = (-b - e) / denom; // smaller root
 
-    if (_t > kEpsilon)
+    if (_t > kEpsilon) // if _t is not 0 or negative
     {
+      // set sinfo as per intersection with the object
       t = _t;
       s.normal = (temp + t * ray.d) / r;
       s.normal.normalize();
@@ -67,8 +70,9 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
 
     _t = (-b + e) / denom; // larger root
 
-    if (_t > kEpsilon)
+    if (_t > kEpsilon) // if t is not 0 or negative
     {
+      // set sinfo as per intersection with the object
       t = _t;
       s.normal = (temp + t * ray.d) / r;
       s.normal.normalize();
@@ -83,9 +87,4 @@ bool Sphere::hit(const Ray &ray, float &t, ShadeInfo &s) const
 
   s.hit = false;
   return false;
-}
-
-BBox Sphere::getBBox() const
-{
-
 }

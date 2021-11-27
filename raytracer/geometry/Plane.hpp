@@ -40,11 +40,3 @@ public:
   // Get bounding box.
   virtual BBox getBBox() const override;
 };
-
-// p = o + td
-
-// (p - a) . n = 0
-// (o + td - a) . n = 0
-// o . n + td . n - a.n = 0
-// td . n + (o - a) . n = 0
-// t = (a - o) . n / d . n

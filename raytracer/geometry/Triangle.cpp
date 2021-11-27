@@ -43,6 +43,8 @@ std::string Triangle::to_string() const
 {
 }
 
+// Reference: Ray Tracing from the Ground Up - Kevin Suffern
+
 bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
   double a = v0.x - v1.x, b = v0.x - v2.x, c = ray.d.x, d = v0.x - ray.o.x;
@@ -88,6 +90,7 @@ bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
     return false;
   }
 
+  // set sinfo as per intersection with the object
   t = _t;
   s.normal = (v1 - v0) ^ (v2 - v0);
   s.normal.normalize();

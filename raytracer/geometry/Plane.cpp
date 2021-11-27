@@ -35,41 +35,35 @@ Plane &Plane::operator=(const Plane &rhs)
 
 std::string Plane::to_string() const
 {
-
 }
 
-// Taken from: https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
+// Reference: Ray Tracing from the Ground Up - Kevin Suffern
 
 bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
-    double denom = n * ray.d;
+    // equation for t:  t = (a - o) . n / d . n
 
-    if (abs(denom) > kEpsilon)
+    double denom = n * ray.d; // denominator of the equation
+
+    if (abs(denom) > kEpsilon) // if denominator not 0 or negative
     {
-        double t_ = (a - ray.o) * n;
+        double t_ = (a - ray.o) * n; // numerator of the equation
         t_ /= denom;
 
-        if (t_ > kEpsilon)
+        if (t_ > kEpsilon) // if t is not 0 or negative
         {
+            // set sinfo as per intersection with the object
             t = t_;
-
             s.hit = true;
             s.material_ptr = material_ptr;
             s.hit_point = ray.o + (t * ray.d);
             s.t = t;
             s.normal = Vector3D(n);
             s.ray = Ray(ray);
-
             return true;
         }
     }
 
     s.hit = false;
     return false;
-}
-
-
-BBox Plane::getBBox() const
-{
-    // Not sure
 }
