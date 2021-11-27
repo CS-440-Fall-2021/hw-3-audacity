@@ -40,52 +40,34 @@ std::string Plane::to_string() const
 
 // Taken from: https://stackoverflow.com/questions/23975555/how-to-do-ray-plane-intersection
 
-// bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
-// {
-//     double denom = n * ray.d;
-
-//     if (abs(denom) > 0.0001f)
-//     {
-//         double t_ = (a - ray.o) * n;
-//         t_ /= denom;
-
-//         if (t_ >= 0)
-//         {
-//             t = t_;
-
-//             s.hit = true;
-//             s.material_ptr = material_ptr;
-//             s.hit_point = ray.o + (t * ray.d);
-//             s.t = t;
-//             s.normal = Vector3D(n);
-
-//             return true;
-//         }
-//     }
-
-//     s.hit = false;
-//     return false;
-// }
-
 bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
 {
-    float _t = ((a - ray.o) * n) / (ray.d * n);
+    double denom = n * ray.d;
 
-    if (_t > kEpsilon)
+    if (abs(denom) > kEpsilon)
     {
-        t = _t;
-        s.hit = true;
-        s.normal = n;
-        s.material_ptr = material_ptr;
-        s.t = t;
-        s.hit_point = ray.o + (t * ray.d);
-        s.ray = Ray(ray);
+        double t_ = (a - ray.o) * n;
+        t_ /= denom;
 
-        return true;
+        if (t_ > kEpsilon)
+        {
+            t = t_;
+
+            s.hit = true;
+            s.material_ptr = material_ptr;
+            s.hit_point = ray.o + (t * ray.d);
+            s.t = t;
+            s.normal = Vector3D(n);
+            s.ray = Ray(ray);
+
+            return true;
+        }
     }
+
     s.hit = false;
     return false;
 }
+
 
 BBox Plane::getBBox() const
 {

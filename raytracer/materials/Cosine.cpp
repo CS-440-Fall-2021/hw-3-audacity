@@ -43,7 +43,5 @@ Cosine & Cosine::operator=(const Cosine &other)
 */
 RGBColor Cosine::shade(const ShadeInfo &sinfo) const
 {
-    // std::cout << ( sinfo.normal * ( -1 * sinfo.ray.d ) ) << std::endl;
-    // std::cout << sinfo.ray.d.to_string() << std::endl;
     return color * ( sinfo.normal * ( -1 * sinfo.ray.d ) );
 }
