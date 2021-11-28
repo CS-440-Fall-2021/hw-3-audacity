@@ -23,8 +23,11 @@ void World::set_camera(Camera *c_ptr)
 
 ShadeInfo World::hit_objects(const Ray &ray)
 {
+    // Creates two shadeinfo's
+    // Closest stores the closest intersection to ray origin
     ShadeInfo closest(*this);
     closest.hit = false;
+    closest.depth = 1;
 
     ShadeInfo current(*this);
 
@@ -34,6 +37,7 @@ ShadeInfo World::hit_objects(const Ray &ray)
     {
         if (geometry[i]->hit(ray, t, current) == true)
         {
+            // Updates Closest ShadeInfo if Current is closer than Closest
             if ( ( closest.hit == false ) || ( current.t < closest.t ) )
             {
                 closest = ShadeInfo(current);

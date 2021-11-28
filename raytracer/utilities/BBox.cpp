@@ -99,11 +99,30 @@ void BBox::extend(const BBox& b)
 }
 
 
-bool contains(const Point3D& p)
+bool BBox::contains(const Point3D& p)
 {
-
+    if  ( (pmin.x <= p.x && pmax.x >= p.x) &&
+          (pmin.y <= p.y && pmax.y >= p.y) &&
+          (pmin.z <= p.z && pmax.z >= p.z)
+        )
+        return true;
+    
+    return false;
 }
 
-// Does this BBox overlap with g or b?
-bool overlaps(Geometry* g);
-bool overlaps(const BBox& b);
+
+bool BBox::overlaps(Geometry* g)
+{
+    return this->overlaps(g->getBBox());
+}
+
+bool BBox::overlaps(const BBox& b)
+{
+    if  ( (pmin.x <= b.pmax.x && pmax.x >= b.pmin.x) &&
+          (pmin.y <= b.pmax.y && pmax.y >= b.pmin.y) &&
+          (pmin.z <= b.pmax.z && pmax.z >= b.pmin.z)
+        )
+        return true;
+    
+    return false;
+}

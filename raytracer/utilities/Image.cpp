@@ -53,15 +53,18 @@ void Image::set_pixel(int x, int y, const RGBColor& color)
 
 void Image::write_ppm(std::string path) const
 {
+    // Removes if ppm already exists
     remove(&path[0]);
 
     std::ofstream fp;
     fp.open(path);
 
+    // Writes headers
     fp << "P3\n";
     fp << hres << " " << vres << std::endl;
     fp << "255\n";
 
+    // Writes pixel r,g,b values
     for(int i = 0; i < hres; i++)
     {
         for(int j = 0; j < vres; j++)
