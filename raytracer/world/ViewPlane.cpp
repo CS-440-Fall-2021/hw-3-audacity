@@ -7,6 +7,8 @@ ViewPlane::ViewPlane()
     
     hres = 640;
     vres = 480;
+    
+    normal = Vector3D(0, 0, -1);
 }
 
 int ViewPlane::get_hres() const
