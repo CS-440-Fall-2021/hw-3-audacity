@@ -6,9 +6,17 @@
 #include "../utilities/ShadeInfo.hpp"
 #include <iostream>
 
-World::World() {};
+World::World()
+{
+    camera_ptr = nullptr;
+    sampler_ptr = nullptr;
+}
 
-World::~World() {};
+World::~World()
+{
+    delete camera_ptr;
+    delete sampler_ptr;
+}
 
 void World::add_geometry(Geometry *geom_ptr)
 {
