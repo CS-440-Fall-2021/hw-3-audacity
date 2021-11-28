@@ -41,7 +41,13 @@ Image::~Image()
 
 void Image::set_pixel(int x, int y, const RGBColor& color)
 {
-    colors[y][x] = color;
+    int r,g,b;
+    
+    r = (int) round(color.r * 255);
+    g = (int) round(color.g * 255);
+    b = (int) round(color.b * 255);
+
+    colors[y][x] = RGBColor(r, g, b);
 }
 
 
@@ -60,7 +66,7 @@ void Image::write_ppm(std::string path) const
     {
         for(int j = 0; j < vres; j++)
         {
-            fp << colors[i][j].to_string();
+            fp << std::to_string(colors[i][j].r) + " " + std::to_string(colors[i][j].g) + " " + std::to_string(colors[i][j].b);
 
             if (j != (vres - 1))
                 fp << " ";

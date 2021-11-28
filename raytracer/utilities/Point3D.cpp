@@ -24,7 +24,7 @@ std::string Point3D::to_string() const
     std::string y_s = std::to_string(y);
     std::string z_s = std::to_string(z);
 
-    return x_s + " " + y_s + " " + z_s;
+    return "Point3D: " + x_s + " " + y_s + " " + z_s + "\n";
 }
   
 Point3D Point3D::operator-() const
@@ -72,10 +72,10 @@ Point3D operator*(const float a, const Point3D &pt)
 
 Point3D min(const Point3D& a, const Point3D& b)
 {
-
+    return Point3D(std::min(a.x, b.x), std::min(a.y, b.y), std::min(a.z, b.z));
 }
 
 Point3D max(const Point3D& a, const Point3D& b)
 {
-    
+    return Point3D(std::max(a.x, b.x), std::max(a.y, b.y), std::max(a.z, b.z));
 }

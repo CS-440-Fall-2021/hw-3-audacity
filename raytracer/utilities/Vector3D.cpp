@@ -42,7 +42,7 @@ std::string Vector3D::to_string() const
     std::string y_s = std::to_string(y);
     std::string z_s = std::to_string(z);
 
-    return x_s + " " + y_s + " " + z_s;
+    return "Vector3D: " + x_s + " " + y_s + " " + z_s + "\n";
 }
 
 

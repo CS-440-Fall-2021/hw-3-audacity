@@ -11,7 +11,7 @@ BBox::BBox(const Point3D &min, const Point3D &max)
 
 std::string BBox::to_string() const
 {
-    // Not sure
+    return "BBox: " + pmin.to_string() + pmax.to_string() + "\n";
 }
 
 bool BBox::hit(const Ray &ray, float &t_enter, float &t_exit) const
@@ -86,3 +86,24 @@ bool BBox::hit(const Ray &ray, float &t_enter, float &t_exit) const
 
     return false;
 }
+
+void BBox::extend(Geometry* g)
+{
+    this->extend(g->getBBox());
+}
+
+void BBox::extend(const BBox& b)
+{
+    pmin = min(pmin, b.pmin);
+    pmax = max(pmax, b.pmax);
+}
+
+
+bool contains(const Point3D& p)
+{
+
+}
+
+// Does this BBox overlap with g or b?
+bool overlaps(Geometry* g);
+bool overlaps(const BBox& b);

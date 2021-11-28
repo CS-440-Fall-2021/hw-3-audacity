@@ -28,11 +28,9 @@ ShadeInfo World::hit_objects(const Ray &ray)
 
     ShadeInfo current(*this);
 
-    bool closest_set = false;
-
     float t = 0;
 
-    for(int i = 0; i < geometry.size(); i++)
+    for(unsigned int i = 0; i < geometry.size(); i++)
     {
         if (geometry[i]->hit(ray, t, current) == true)
         {

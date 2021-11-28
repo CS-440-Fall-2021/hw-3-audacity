@@ -43,5 +43,5 @@ Cosine & Cosine::operator=(const Cosine &other)
 */
 RGBColor Cosine::shade(const ShadeInfo &sinfo) const
 {
-    return color * ( sinfo.normal * ( -1 * sinfo.ray.d ) );
+    return color * ( sinfo.normal * ( -sinfo.ray.d ) );
 }

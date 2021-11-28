@@ -35,6 +35,7 @@ Plane &Plane::operator=(const Plane &rhs)
 
 std::string Plane::to_string() const
 {
+    return "Plane: " + a.to_string() + n.to_string() + "\n";
 }
 
 // Reference: Ray Tracing from the Ground Up - Kevin Suffern
@@ -52,18 +53,25 @@ bool Plane::hit(const Ray &ray, float &t, ShadeInfo &s) const
 
         if (t_ > kEpsilon) // if t is not 0 or negative
         {
-            // set sinfo as per intersection with the object
+            // set t and sinfo as per intersection with the object
             t = t_;
+
             s.hit = true;
             s.material_ptr = material_ptr;
             s.hit_point = ray.o + (t * ray.d);
             s.t = t;
-            s.normal = Vector3D(n);
-            s.ray = Ray(ray);
+            s.normal = n;
+            s.ray = ray;
+
             return true;
         }
     }
 
     s.hit = false;
     return false;
+}
+
+BBox Plane::getBBox() const
+{
+    
 }

@@ -41,6 +41,7 @@ Triangle &Triangle::operator=(const Triangle &rhs)
 
 std::string Triangle::to_string() const
 {
+  return "Triangle: " + v0.to_string() + v1.to_string() + v2.to_string() + "\n";
 }
 
 // Reference: Ray Tracing from the Ground Up - Kevin Suffern
@@ -65,7 +66,7 @@ bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
     return false;
   }
 
-  double r = r = e * l - h * i;
+  double r = e * l - h * i;
   double e2 = a * n + d * q + c * r;
   double gamma = e2 * inv_denom;
 
@@ -90,19 +91,27 @@ bool Triangle::hit(const Ray &ray, float &t, ShadeInfo &s) const
     return false;
   }
 
-  // set sinfo as per intersection with the object
+  // set t and sinfo as per intersection with the object
   t = _t;
+
   s.normal = (v1 - v0) ^ (v2 - v0);
   s.normal.normalize();
   s.hit_point = ray.o + t * ray.d;
   s.hit = true;
   s.material_ptr = material_ptr;
   s.t = t;
-  s.ray = Ray(ray);
+  s.ray = ray;
 
   return true;
 }
 
 BBox Triangle::getBBox() const
 {
+  Point3D _max = max(v0, v1);
+  _max = max(_max, v2);
+  
+  Point3D _min = min(v0, v1);
+  _min = min(_min, v2);
+
+  return BBox(_min, _max);
 }

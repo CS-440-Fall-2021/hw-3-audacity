@@ -12,7 +12,7 @@ Simple::Simple(const Simple &camera)
 Simple & Simple::operator=(const Simple &other)
 {
     camera_ptr = other.camera_ptr;
-    viewplane_ptr == other.viewplane_ptr;
+    viewplane_ptr = other.viewplane_ptr;
 
     return *this;
 }

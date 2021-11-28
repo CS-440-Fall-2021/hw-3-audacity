@@ -2,7 +2,6 @@
 
 ViewPlane::ViewPlane()
 {
-    // Not sure
     top_left = Point3D(-320, 240, 0);
     bottom_right = Point3D(320, 240, 0);
     

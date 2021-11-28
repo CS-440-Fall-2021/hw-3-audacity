@@ -23,7 +23,7 @@ std::string RGBColor::to_string() const
     std::string g_s = std::to_string((int)round(g * 255));
     std::string b_s = std::to_string((int)round(b * 255));
 
-    return r_s + " " + g_s + " " + b_s;
+    return "RGBColor: " + r_s + " " + g_s + " " + b_s + "\n";
 }
 
 
